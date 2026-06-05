@@ -24,4 +24,3 @@ All associated CVEs and CVSS scores:
 - CVE-2019-12108 — 7.5 HIGH 
 - CVE-2013-2600 — 7.5 HIGH 
 - CVE-2026-5720 — 7.1 HIGH 
-- 
