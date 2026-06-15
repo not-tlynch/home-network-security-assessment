@@ -26,17 +26,19 @@ All associated CVEs and CVSS scores:
 - CVE-2026-5720 — 7.1 HIGH 
 
 ## Repository Structure
+
+```
 home-network-security-assessment/
 ├── README.md
-
 ├── 01-methodology/
-│  ├── 01_nmap_recon.md
-│  └── 02_security_onion_monitoring.md
+│   ├── 01_nmap_recon.md
+│   └── 02_security_onion_monitoring.md
 ├── 02-findings/
-│  └── cve-2017-8798_miniupnp.md
+│   └── cve-2017-8798_miniupnp.md
 ├── 03-evidence/
-│  ├── hunt_query.txt
-│  ├── nmap_output.txt
-│  └── suricata_rule.txt
+│   ├── hunt_query.txt
+│   ├── nmap_output.txt
+│   └── suricata_rule.txt
 └── 04-remediation/
-   └── notes.md
+    └── notes.md
+```
