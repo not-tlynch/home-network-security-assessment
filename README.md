@@ -23,7 +23,10 @@ All associated CVEs and CVSS scores:
 - CVE-2019-12109 — 7.5 HIGH
 - CVE-2019-12108 — 7.5 HIGH 
 - CVE-2013-2600 — 7.5 HIGH 
-- CVE-2026-5720 — 7.1 HIGH 
+- CVE-2026-5720 — 7.1 HIGH
+
+## Findings Note 
+CVE-2026-5720 differs from the other findings — its CVSS vector specifies an adjacent attack vector (AV:A), meaning exploitation requires local network access rather than internet exposure. It is included for completeness as it affects the same miniupnpd service, but does not carry the same external-exposure risk as CVE-2017-8798.
 
 ## Repository Structure
 
