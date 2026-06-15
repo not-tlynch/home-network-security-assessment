@@ -40,7 +40,7 @@ home-network-security-assessment/
 │   └── cve-2017-8798_miniupnp.md
 ├── 03-evidence/
 │   ├── hunt_query.txt
-│   ├── nmap_output.txt
+│   ├── nmap_output_redacted.txt
 │   └── suricata_rule.txt
 └── 04-remediation/
     └── notes.md
