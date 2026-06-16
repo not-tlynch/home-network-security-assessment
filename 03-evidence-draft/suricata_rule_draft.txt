@@ -1,4 +1,4 @@
-alert udp !192.168.68.0/24 any -> 192.168.68.1 1900 (msg:"External UPnP probe to WAN-facing MiniUPnPd (port 1900)"; sid:9000001; rev:3;)
+alert udp !192.168.68.0/24 any -> 192.168.68.1 1900 (msg:"CVE-2017-8798 External UPnP probe to router"; sid:9000001; rev:2;)
 
 # Rule breakdown:
 #   alert udp          — generate an alert on matching UDP traffic
@@ -8,4 +8,12 @@ alert udp !192.168.68.0/24 any -> 192.168.68.1 1900 (msg:"External UPnP probe to
 #   192.168.68.1 1900  — destination: the router, on UPnP port 1900
 #   msg                — alert label shown when the rule fires
 #   sid:9000001        — unique rule ID (90xxxxx range = local custom rules)
-#   rev:3              — rule revision (bumped from 2 after the msg correction)
+#   rev:2              — rule revision number
+#
+# Note: the msg field references CVE-2017-8798, which later validation
+# identified as a false positive for this daemon (it affects the miniupnpc
+# client library, not miniupnpd — see 02-findings/). The rule's detection
+# logic is unaffected: it alerts on any external source probing port 1900,
+# which is valid regardless of the specific CVE. A planned revision (rev:3)
+# updates the msg to "External UPnP probe to WAN-facing MiniUPnPd (port 1900)"
+# to remove the false-positive reference.
