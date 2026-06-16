@@ -1,1 +1,42 @@
-test
+Raw Nmap vuln scan output (pre-validation). The vulners CVE list below is unverified scanner output matched against the daemon CPE. Validated findings — including one false positive caught in this list — are documented in 02-findings/.
+
+└─$ nmap -sV --script vuln 192.168.68.1 
+Starting Nmap 7.99 ( https://nmap.org ) at 2026-06-16 12:54 -0400
+Nmap scan report for 192.168.68.1
+Host is up (0.0050s latency).
+Not shown: 996 closed tcp ports (reset)
+PORT     STATE SERVICE    VERSION
+53/tcp   open  domain     ISC BIND
+80/tcp   open  http       OpenWrt uHTTPd
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+443/tcp  open  ssl/https?
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+1900/tcp open  upnp       MiniUPnP 1.8 (TP-LINK router; UPnP 1.1)
+| vulners: 
+|   cpe:/a:miniupnp_project:miniupnpd:1.8: 
+|       EDB-ID:43501    9.8     https://vulners.com/exploitdb/EDB-ID:43501      *EXPLOIT*
+|       CVE-2017-8798   9.8     https://vulners.com/cve/CVE-2017-8798
+|       CVE-2026-5720   9.1     https://vulners.com/cve/CVE-2026-5720
+|       CVE-2017-1000494        7.8     https://vulners.com/cve/CVE-2017-1000494
+|       EXPLOITPACK:BF9A30C8BDA7F90A61C73F47DEC59DBC    7.5     ...        *EXPLOIT*
+|       CVE-2019-12111  7.5     https://vulners.com/cve/CVE-2019-12111
+|       CVE-2019-12109  7.5     https://vulners.com/cve/CVE-2019-12109
+|       CVE-2019-12108  7.5     https://vulners.com/cve/CVE-2019-12108
+|       CVE-2013-2600   7.5     https://vulners.com/cve/CVE-2013-2600
+|       CNVD-2019-14714 7.5     https://vulners.com/cnvd/CNVD-2019-14714
+|       CNVD-2019-14713 7.5     https://vulners.com/cnvd/CNVD-2019-14713
+|       CNVD-2019-14712 7.5     https://vulners.com/cnvd/CNVD-2019-14712
+|       CNVD-2019-14652 7.5     https://vulners.com/cnvd/CNVD-2019-14652
+|       1337DAY-ID-29439        7.5     ...        *EXPLOIT*
+|       1337DAY-ID-27766        7.5     ...        *EXPLOIT*
+|_      PACKETSTORM:142491      0.0     ...      *EXPLOIT*
+MAC Address: [REDACTED-MAC] (TP-Link Systems)
+Service Info: OS: Linux; Devices: WAP, broadband router; CPE: cpe:/o:linux:linux_kernel
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 431.46 seconds
