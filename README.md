@@ -53,6 +53,7 @@ home-network-security-assessment/
 ├── 02-findings/
 │   └── miniupnpd_exposure.md
 ├── 03-evidence/
+│   ├── external_scan_redacted.txt
 │   ├── hunt_query.txt
 │   ├── nmap_output_redacted.txt
 │   └── suricata_rule.txt
