@@ -1,5 +1,4 @@
-Raw Nmap vuln scan output (pre-validation). The vulners CVE list below is unverified scanner output matched against the daemon CPE. Validated findings — including one false positive caught in this list — are documented in 02-findings/.
-
+# Raw Nmap vuln scan output (pre-validation). The vulners CVE list below is unverified scanner output matched against the daemon CPE. Validated findings — including one false positive caught in this list — are documented in 02-findings/.
 └─$ nmap -sV --script vuln 192.168.68.1 
 Starting Nmap 7.99 ( https://nmap.org ) at 2026-06-16 12:54 -0400
 Nmap scan report for 192.168.68.1
@@ -24,7 +23,7 @@ PORT     STATE SERVICE    VERSION
 |       CVE-2017-8798   9.8     https://vulners.com/cve/CVE-2017-8798
 |       CVE-2026-5720   9.1     https://vulners.com/cve/CVE-2026-5720
 |       CVE-2017-1000494        7.8     https://vulners.com/cve/CVE-2017-1000494
-|       EXPLOITPACK:BF9A30C8BDA7F90A61C73F47DEC59DBC    7.5     ...        *EXPLOIT*
+|       EXPLOITPACK:BF9A30C8BDA7F90A61C73F47DEC59DBC    7.5     https://vulners.com/exploitpack/EXPLOITPACK:BF9A30C8BDA7F90A61C73F47DEC59DBC       *EXPLOIT*
 |       CVE-2019-12111  7.5     https://vulners.com/cve/CVE-2019-12111
 |       CVE-2019-12109  7.5     https://vulners.com/cve/CVE-2019-12109
 |       CVE-2019-12108  7.5     https://vulners.com/cve/CVE-2019-12108
@@ -33,9 +32,9 @@ PORT     STATE SERVICE    VERSION
 |       CNVD-2019-14713 7.5     https://vulners.com/cnvd/CNVD-2019-14713
 |       CNVD-2019-14712 7.5     https://vulners.com/cnvd/CNVD-2019-14712
 |       CNVD-2019-14652 7.5     https://vulners.com/cnvd/CNVD-2019-14652
-|       1337DAY-ID-29439        7.5     ...        *EXPLOIT*
-|       1337DAY-ID-27766        7.5     ...        *EXPLOIT*
-|_      PACKETSTORM:142491      0.0     ...      *EXPLOIT*
+|       1337DAY-ID-29439        7.5     https://vulners.com/zdt/1337DAY-ID-29439        *EXPLOIT*
+|       1337DAY-ID-27766        7.5     https://vulners.com/zdt/1337DAY-ID-27766        *EXPLOIT*
+|_      PACKETSTORM:142491      0.0     https://vulners.com/packetstorm/PACKETSTORM:142491      *EXPLOIT*
 MAC Address: [REDACTED-MAC] (TP-Link Systems)
 Service Info: OS: Linux; Devices: WAP, broadband router; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
