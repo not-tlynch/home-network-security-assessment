@@ -2,10 +2,10 @@
 Authorized home network security assessment — identified CVE-2017-8798 (CVSS 9.8) on an internet-facing UPnP service. Documented Nmap methodology and deployed custom Suricata rules to monitor port 1900 traffic in Security Onion.
 
 ## Overview 
-This repository contains a detailed account on the steps and procedures used to find multiple vulnerabilites and secure a home network. Upon verbal authorization from the network owner, I began reconnaissance on the local subnet. A scan revealed multiple CVEs — CVE-2017-8798, which scored highest for severity, was on a port completely accessible to anyone on the internet. Security Onion and Suricata with custom rules were deployed in response to monitor network traffic. An analysis of logs concluded no unauthorized or malicious activity.
+This repository contains a detailed account on the steps and procedures used to find multiple vulnerabilities and secure a home network. Upon verbal authorization from the network owner, I began reconnaissance on the local subnet. A scan revealed multiple CVEs — CVE-2017-8798, which scored highest for severity, was on a port completely accessible to anyone on the internet. Security Onion and Suricata with custom rules were deployed in response to monitor network traffic. An analysis of logs concluded no unauthorized or malicious activity.
 
 ## Authorization and Rules of Engagement
-All testing was done with prior knowledge and verbal consent of the network owner. The scope consisted of the home network subnet and router. Any destructive testing and exploitation of vulnerabilites was off limits
+All testing was done with prior knowledge and verbal consent of the network owner. The scope consisted of the home network subnet and router. Any destructive testing and exploitation of vulnerabilities was off limits.
 
 ## Tools Used 
 - Nmap — Network and vulnerability scanning
