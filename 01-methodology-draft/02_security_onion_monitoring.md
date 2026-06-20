@@ -4,22 +4,15 @@
 ## 1. Objective
 
 Security Onion was installed to monitor for any external probing around port 1900, which would indicate reconnaissance. The MiniUPnPd service on port 1900 suffers from several denial-of-service CVEs. The goal is to find out whether any external sources are actually probing this service.
-This file `(02_security_onion_monitoring.md)` focuses on the defensive side; for the offensive recon, see 01_nmap_recon.md.
+This file `(02_security_onion_monitoring.md)` focuses on the defensive side; for the offensive recon, see `(01_nmap_recon.md)`
 
 
-[FILL IN: objective paragraph]
-
----
 
 ## 2. Why Detection — Compensating Control Rationale
 
 The most effective solution would be to reconfigure the router so port 1900 is no longer WAN-facing. The constraint here is a lack of ownership over the router and lost admin credentials.
 When prevention isn't possible, the next best resolution is detection. Implementing a detective control provides awareness where prevention falls short. This approach fits the threat landscape of DoS attacks well: with denial-of-service, the most useful things to know are whether it's happening and when.
 
-
-[FILL IN: compensating-control reasoning — keep it aligned with 04-remediation/notes.md]
-
----
 
 ## 3. Monitoring Architecture
  Timeline
@@ -60,15 +53,12 @@ Analyst interaction — Security Onion's web portal
 
 A key takeaway was managing local resource bottlenecks. The VM reached its storage threshold, crossing the ~85% Elasticsearch disk watermark and halting Elasticsearch, which cascaded into container failures. Recovering from that — reconfiguring the box and redeploying the custom rules back to baseline — was its own exercise.
 
-[FILL IN: deployment description — working SO 2.3.300, interfaces/roles, where events land, one honest line on the disk-crunch + recovery]
 
 ### 3.2 Traffic Visibility — the honest constraint
 
 A VMware vSwitch behaves like a learning switch, not a hub. That means unicast between two machines is handed only to the destination port — whereas broadcast and multicast flood to every port, which is why the sensor saw the Roku SSDP beacons (SSDP is multicast) but not unicast probes. Promiscuous mode is necessary but not sufficient: in promiscuous mode the NIC can accept frames not addressed to it, but the vSwitch still has to deliver them to the port in the first place.
 
 A consumer Deco router cannot SPAN or mirror WAN-side traffic to the sensor. So even with Security Onion fully working, "no external probes observed" is bounded by what could physically reach the sensor's vantage point — meaning absence of alerts is not proof that external probing isn't happening. Adding a managed switch with a SPAN port is the next logical step, allowing full utilization of Security Onion.
-
-[FILL IN: visibility constraint — vSwitch unicast-vs-multicast mechanism (explains Roku-seen / probe-missed), promiscuous-necessary-not-sufficient, the WAN-unicast caveat = absence-of-alerts isn't absence-of-probing, why this led to offline validation in §7]
 
 
 ## Detection Strategy
@@ -125,19 +115,11 @@ This proves the rule's match logic works. While not live evidence, it remains a 
 
 The rule's match logic was validated offline; full reproduction trail and `eve.json` output are in [FILL IN: link to the validation artifact / evidence file].
 
-Summary of what it proved: [FILL IN: 2-3 sentences — logic correct, external-source clause exercised via spoofed TEST-NET-3 source, offline ≠ live-observed].
-
 
 ## 8. Monitoring Period Findings
 My deployment of Security Onion was not continuous — it hit a wall during the SSD crunch and had to be recovered, and the original log files from before the outage are lost. What I can say is that during its operational window, Security Onion saw and handled traffic correctly, and produced no alerts on 9000001.
 
 Note: the absence of 9000001 alerts is not evidence that no probing occurred. The sensor could not see WAN-side unicast — the traffic the rule is written to catch — so it had no way to observe an external probe in the first place. Absence of alerts here reflects the sensor's vantage point, not the absence of an attacker.
-
-
-
-[FILL IN: monitoring window, result, how verified]
-
-
 
 ## 9. Limitations
 
