@@ -1,1 +1,7 @@
-# Hunt query — to be added from Security Onion
+# Baseline observation query — internal SSDP characterization
+# Used to observe Roku SSDP beaconing on port 1900 and establish
+# normal-traffic baseline (see 01-methodology/02_security_onion_monitoring.md section 1).
+# Returns all port-1900 traffic intentionally — internal multicast included —
+# to characterize routine chatter before tuning the external-probe rule.
+
+destination.port:1900
