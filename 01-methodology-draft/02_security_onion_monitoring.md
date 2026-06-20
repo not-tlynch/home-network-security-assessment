@@ -91,7 +91,7 @@ To characterize normal traffic, I started by observing what was already happenin
 
 ### 6.1 SSDP beacon baseline
 
-Roku TVs beacon on port 1900 (SSDP multicast) every two minutes or so, as noted earlier. This matters because it directly informed the !192.168.68.0/24 clause of the rule, where I exclude internal traffic — this is exactly the routine chatter that clause is there to filter out. I can regularly expect this kind of traffic from this service without raising alarm. A Roku normally beacons for three things: local device discovery, keeping the connection alive, and telemetry/ad polling. These all originate from within the network; the rule only fires on external IPs, i.e. anyone potentially scanning.
+Roku TVs beacon on port 1900 (SSDP multicast) every two minutes or so, as noted earlier. This matters because it directly informed the (`!192.168.68.0/24`) clause of the rule, where I exclude internal traffic — this is exactly the routine chatter that clause is there to filter out. I can regularly expect this kind of traffic from this service without raising alarm. A Roku normally beacons for three things: local device discovery, keeping the connection alive, and telemetry/ad polling. These all originate from within the network; the rule only fires on external IPs, i.e. anyone potentially scanning.
 
 **The command used:** `sudo tcpdump -i bond0 -n port 1900`
  
