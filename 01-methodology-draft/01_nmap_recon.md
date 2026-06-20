@@ -16,7 +16,7 @@ The scan identified the router at 192.168.68.1 with four open TCP ports:
 * 443/tcp — ssl/https
 * 1900/tcp — upnp (MiniUPnP 1.8 — TP-LINK router, UPnP 1.1)
 
-Port 1900 is the relevant finding: an outdated MiniUPnPd 1.8 daemon, a version dating to 2014. Nmap labels the service "MiniUPnP"; this is the daemon, miniupnpd. The service version string here is what drives the entire assessment — the version is what the vulnerability scan matches CVEs against in Phase 2.
+Port 1900 is the relevant finding: an outdated MiniUPnPd 1.8 daemon, a version dating to 2014. Nmap labels the service "MiniUPnP"; this is the daemon, miniupnpd. The service version string is the pivot the whole assessment turns on — it's what the Phase 2 vulnerability scan matches CVEs against.
 
 ## Phase 2 - Vulnerability Scan
 `nmap -sV --script vuln 192.168.68.1 -oN router_scan.txt` — here `nmap` invokes the scanner, `-sV` finds the service/version, `--script vuln` activates the NSE to compare detected services and versions against known vulnerabilities, `192.168.68.1` is the router (the focus of the vulnerability scan after subnet discovery in Phase 1), and `-oN router_scan.txt` saves the output to a text file. (The redacted output can be viewed under `home-network-security-assessment/03-evidence/nmap_output_redacted.txt`.)
@@ -25,9 +25,9 @@ The `--script vuln` output is a starting point, not a conclusion. NSE matches CV
 
 The `vulners` script returned a list of CVEs and public exploits matched against the daemon's CPE string (`cpe:/a:miniupnp_project:miniupnpd:1.8`), the highest being CVE-2017-8798 and EDB-ID:43501 at 9.8. Validation against the authoritative records reordered this picture significantly:
 
-* The 9.8 CVE-2017-8798 hit is a false positive — it affects the MiniUPnP client library (miniupnpc), not the daemon. The scanner matched it via the shared CPE. (Full breakdown in `02-findings/`.)
-* The genuine daemon findings are denial-of-service conditions: CVE-2019-12108, CVE-2019-12109, CVE-2019-12111 (all 7.5, verified), and CVE-2026-5720 (7.1, verified).
-* CVE-2017-1000494 and CVE-2013-2600 could not be confirmed against this daemon version and are noted as unconfirmed rather than treated as findings.
+* The 9.8 CVE-2017-8798 hit is a false positive — it affects the MiniUPnPc client library, not the MiniUPnPd daemon. The scanner matched it via the shared CPE. (Full breakdown in `02-findings/`.)
+* The confirmed daemon findings, all validated against their NVD records: CVE-2019-12108, CVE-2019-12109, CVE-2019-12111 (DoS, 7.5), CVE-2013-2600 (information disclosure, 7.5), and CVE-2017-1000494 (local-access, 7.8).
+* CVE-2026-5720 (DoS / information disclosure) is confirmed against the daemon, but its NVD record is undergoing reanalysis; severity score pending, not finalized at time of writing.
 
 The HTTP scripts against ports 80 and 443 returned clean — no XSS or CSRF found. The CVE-2014-3704 check on 443 errored out and was inconclusive.
 
