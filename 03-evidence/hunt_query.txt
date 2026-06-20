@@ -5,3 +5,16 @@
 # to characterize routine chatter before tuning the external-probe rule.
 
 destination.port:1900
+
+
+# External-probe hunt query — mirrors detection rule logic (sid:9000001)
+# Returns port-1900 traffic from non-local sources only: destined for the
+# router on 1900, excluding the internal 192.168.68.0/24 subnet. This is the
+# hunt-side equivalent of the Suricata rule's !192.168.68.0/24 clause —
+# filtering out the Roku SSDP baseline to surface only external probing.
+#
+# NOTE: In this lab the sensor cannot observe WAN-side unicast (consumer Deco
+# cannot SPAN external traffic to the monitor port — see
+# 02_security_onion_monitoring.md section 2).
+
+destination.port:1900 AND NOT source.ip:192.168.68.0/24
