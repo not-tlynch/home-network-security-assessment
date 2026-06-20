@@ -1,6 +1,6 @@
 # home-network-security-assessment
 
-Authorized home network security assessment — identified an outdated, internet-facing UPnP daemon (MiniUPnPd 1.8) affected by multiple denial-of-service CVEs. Documented Nmap methodology, validated scanner output against authoritative CVE records, and deployed custom Suricata rules to monitor port 1900 traffic in Security Onion.
+Authorized home network assessment — found an internet-facing, outdated UPnP daemon (MiniUPnPd 1.8) with multiple DoS CVEs. Validated scanner output against source records, documented Nmap methodology, deployed custom Suricata monitoring in Security Onion. 
 
 ## Overview
 
