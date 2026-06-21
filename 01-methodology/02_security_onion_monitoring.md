@@ -128,6 +128,7 @@ Note: the absence of 9000001 alerts is not evidence that no probing occurred. Th
 - **Monitoring was not continuous — An SSD storage overflow caused an outage, and logs from before the outage were lost.**
 - **Single-rule, single-port scope — The rule watched port 1900 specifically; no comprehensive network coverage was implemented.**
 - **Signature-based detection only — No behavioral or Zeek analysis was implemented, meaning low-and-slow or novel methods could slip past detection**
+- - **Rule covers UDP discovery, not the TCP control channel —** The confirmed CVEs are reachable over the SOAP/control channel on **1900/tcp**, whereas `sid:9000001` matches **UDP/1900** (SSDP discovery). The rule was built on the UDP chatter the sensor could actually observe (Roku SSDP multicast); a TCP-side rule covering the control channel is a noted next step. This is a coverage boundary, not a detection failure — the rule does what it claims, but it does not watch the protocol the vulnerabilities are triggered on.
 
 
 
