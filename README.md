@@ -55,6 +55,7 @@ home-network-security-assessment/
 │   ├── external_scan_redacted.txt
 │   ├── hunt_query.txt
 │   ├── nmap_output_redacted.txt
+│   ├── rule_9000001_validation.md
 │   └── suricata_rule.txt
 └── 04-remediation/
     └── notes.md
