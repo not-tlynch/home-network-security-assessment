@@ -17,4 +17,4 @@ destination.port:1900
 # cannot SPAN external traffic to the monitor port — see
 # 02_security_onion_monitoring.md section 2).
 
-destination.port:1900 AND NOT source.ip:192.168.68.0/24
+destination.port:1900 AND NOT source.ip:"192.168.68.0/24"
