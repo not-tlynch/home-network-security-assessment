@@ -38,7 +38,6 @@ By treating the scan result as fallible, I identified this as a false positive. 
 ## Impact
 The confirmed findings are remotely exploitable against an internet-facing daemon: an attacker on the public internet can crash the service (the DoS findings) or leak memory contents (CVE-2013-2600), without needing any prior access. One additional finding (CVE-2017-1000494) requires local access and is lower-risk in this context.
 
-These findings do **not** establish RCE, persistence, or a confirmed network pivot — no single finding grants code execution or control of the device.
 
 The core issue lies outside the CVEs entirely: UPnP is exposed to the WAN due to the router's misconfiguration. This contradicts the protocol's intended purpose, as UPnP is designed for internal network use only.
 
