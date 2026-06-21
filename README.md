@@ -4,7 +4,7 @@ Authorized home network assessment — found an internet-facing, outdated UPnP d
 
 ## Overview
 
-This repository contains a detailed account of the steps and procedures used to find multiple vulnerabilities and secure a home network. Upon verbal authorization from the network owner, I began reconnaissance on the local subnet. A scan flagged multiple CVEs against an outdated UPnP daemon (MiniUPnPd 1.8) running on a port accessible from the public internet. I validated each flagged CVE against its authoritative record — which caught one false positive the scanner mis-attributed — and confirmed the genuine finding: an internet-exposed, outdated daemon vulnerable to several remote denial-of-service conditions. Security Onion and Suricata with custom rules were deployed in response to monitor network traffic. An analysis of logs concluded no unauthorized or malicious activity.
+This repository contains a detailed account of the steps and procedures used to find multiple vulnerabilities and secure a home network. Upon verbal authorization from the network owner, I began reconnaissance on the local subnet. A scan flagged multiple CVEs against an outdated UPnP daemon (MiniUPnPd 1.8) running on a port accessible from the public internet. I validated each flagged CVE against its authoritative record — which caught one false positive the scanner mis-attributed — and confirmed the genuine finding: an internet-exposed, outdated daemon vulnerable to several remote denial-of-service conditions. Security Onion and Suricata with custom rules were deployed in response to monitor network traffic. An analysis of logs detected no unauthorized or malicious activity.
 
 ## Authorization and Rules of Engagement
 
@@ -29,7 +29,7 @@ The daemon is affected by multiple confirmed vulnerabilities — primarily remot
 * CVE-2019-12111 — 7.5 HIGH — DoS (NULL pointer dereference, pcpserver.c)
 * CVE-2013-2600 — 7.5 HIGH — information disclosure (improper snprintf() use; NVD description names miniupnpd directly)
 * CVE-2017-1000494 — 7.8 HIGH — local-access DoS / memory corruption (uninitialized stack variable, upnpreplyparse.c; miniupnpd < 2.0). Local vector (AV:L) — does not contribute to internet-exposure risk.
-* CVE-2026-5720 — score under NVD reanalysis — DoS / information disclosure (integer underflow in SOAPAction header parsing). NVD description indicates a remote vector; formal CVSS is pending reanalysis and is currently contested between 7.1 (CVSS 4.0, adjacent) and 9.1 (CVSS 3.1, network). Scored conservatively as pending rather than committing to either value while the record is in flux.
+* CVE-2026-5720 — score under NVD reanalysis — DoS / information disclosure (integer underflow in SOAPAction header parsing)
 
 The confirmed findings fall into three impact classes: remote denial-of-service (CVE-2019-12108, -12109, -12111 — availability impact), remote information disclosure (CVE-2013-2600 — confidentiality impact), and one local-access memory-corruption bug (CVE-2017-1000494 — local vector). No remote code execution vulnerability was confirmed against this daemon. A sixth finding, CVE-2026-5720 (DoS / information disclosure), is remotely triggered per its NVD description but is undergoing reanalysis; its formal severity is not finalized at time of writing.
 
