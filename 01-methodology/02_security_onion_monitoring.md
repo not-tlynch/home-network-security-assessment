@@ -61,7 +61,7 @@ A VMware vSwitch behaves like a learning switch, not a hub. That means unicast b
 A consumer Deco router cannot SPAN or mirror WAN-side traffic to the sensor. So even with Security Onion fully working, "no external probes observed" is bounded by what could physically reach the sensor's vantage point — meaning absence of alerts is not proof that external probing isn't happening. Adding a managed switch with a SPAN port is the next logical step, allowing full utilization of Security Onion.
 
 
-## Detection Strategy
+## 4 Detection Strategy
 Signature or rule-based detection was the centerpiece of the strategy. I have a known service, on a known port, with a known CVE — the problem on the network is well-defined, so I based the rule directly on it. The rule is simple: it alerts on any external probing toward port 1900. Behavioral detection through Zeek would be both more challenging and less suited to this problem. One tight rule filtering for external traffic isn't prone to the same false positives that broad behavioral analysis is. Inferring about a pattern is probabilistic, while using a set of rules is deterministic: `Port 1900 + external IP + UDP`
 
 ## 5. The Custom Rule — `sid:9000001`
