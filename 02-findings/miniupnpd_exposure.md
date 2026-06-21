@@ -9,6 +9,7 @@ The router uses the outdated MiniUPnPd 1.8 on port 1900. A scan of the public IP
 ## Affected Service
 - **Service:** MiniUPnPd 1.8 (UPnP daemon)
 - **Port:** 1900/tcp
+- **Note on protocol — TCP control vs UDP discovery.** The daemon was detected on **1900/tcp**, and every confirmed CVE lives in the SOAP/control path (reached over TCP), not in SSDP discovery, which runs over UDP/1900 multicast (the Roku beaconing seen during baselining). The detection rule (`sid:9000001`) covers the UDP discovery channel, the only port-1900 traffic the sensor could observe, so the TCP control channel where these CVEs are reachable is a known monitoring gap (see 01-methodology).
 - **Device:** TP-Link Deco S4R
 - **Exposure:** Internet-facing (confirmed via external scan — see 01-methodology)
 
