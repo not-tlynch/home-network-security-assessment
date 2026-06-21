@@ -109,11 +109,11 @@ I observed a timing anomaly in the Roku beaconing pattern. I wasn't able to dete
 
 ## 7. Rule Validation
 
-As mentioned, issues with VMware's vSwitch meant I couldn't see unicast traffic. To validate the rule, I opted for an offline testing environment: I took the rule's logic and tested it against a crafted packet read directly from a pcap file, rather than sniffing a live interface. Because the rule excludes traffic from 192.168.68.0/24, I used Scapy to craft a packet with a spoofed external source — the only way to exercise that exclusion clause, since any packet sent from inside the network is internal by definition. The rule fired as expected against the spoofed packet; the full eve.json output is in [evidence].
+As mentioned, issues with VMware's vSwitch meant I couldn't see unicast traffic. To validate the rule, I opted for an offline testing environment: I took the rule's logic and tested it against a crafted packet read directly from a pcap file, rather than sniffing a live interface. Because the rule excludes traffic from 192.168.68.0/24, I used Scapy to craft a packet with a spoofed external source — the only way to exercise that exclusion clause, since any packet sent from inside the network is internal by definition. The rule fired as expected against the spoofed packet; the full eve.json output is in [`rule_9000001_validation.md`](../03-evidence/rule_9000001_validation.md).
 This proves the rule's match logic works. While not live evidence, it remains a cornerstone of this repository.
 
 
-The rule's match logic was validated offline; full reproduction trail and `eve.json` output are in [FILL IN: link to the validation artifact / evidence file].
+The rule's match logic was validated offline; full reproduction trail and `eve.json` output are in [`rule_9000001_validation.md`](../03-evidence/rule_9000001_validation.md).
 
 
 ## 8. Monitoring Period Findings
@@ -146,39 +146,14 @@ Most future work for this repo will consist of addressing the limitations listed
 
 **Evidence (this repository):**
 
-- [`rule_9000001_validation.md`](rule_9000001_validation.md](https://github.com/not-tlynch/home-network-security-assessment/blob/main/02-findings/miniupnpd_exposure.md)) — offline rule-logic validation; full `eve.json` output and field-by-field clause breakdown
-- [`03-evidence/suricata_rule.txt`](03-evidence/suricata_rule.txt) — the deployed rule (`sid:9000001`, rev:2)
-- [`03-evidence/hunt_query.txt`](03-evidence/hunt_query.txt) — Security Onion Hunt query used during the monitoring period
-- Related: [`02-findings/miniupnpd_exposure.md`](02-findings/miniupnpd_exposure.md) — the WAN-exposure finding this monitoring supports
-- Related: [`04-remediation/notes.md`](04-remediation/notes.md) — remediation reasoning and compensating-control rationale
+- [`rule_9000001_validation.md`](../03-evidence/rule_9000001_validation.md) — offline rule-logic validation; full `eve.json` output and field-by-field clause breakdown
+- [`suricata_rule.txt`](../03-evidence/suricata_rule.txt) — the deployed rule (`sid:9000001`, rev:2)
+- [`hunt_query.txt`](../03-evidence/hunt_query.txt) — Security Onion Hunt query used during the monitoring period
+- Related: [`miniupnpd_exposure.md`](../02-findings/miniupnpd_exposure.md) — the WAN-exposure finding this monitoring supports
+- Related: [`notes.md`](../04-remediation/notes.md) — remediation reasoning and compensating-control rationale
 
 **External references:**
 
 - [RFC 5737](https://datatracker.ietf.org/doc/html/rfc5737) — IPv4 address blocks reserved for documentation; source of the non-routable TEST-NET-3 address (`203.0.113.0/24`) used in offline validation
 - [Security Onion documentation](https://docs.securityonion.net/) — Suricata rule management and deployment (version 2.3)
-- CVE records — see [`02-findings/miniupnpd_exposure.md`](02-findings/miniupnpd_exposure.md) for the full list of confirmed CVEs with authoritative references
-
-
-- `03-evidence/suricata_rule.txt`
-- `03-evidence/hunt_query.txt` — [DONT HAVE PATH]
-- [DONT HAVE PATH]
-- Related: `02-findings/miniupnpd_exposure.md`, `04-remediation/notes.md`
-
-
-
-<!--
-=========================================================================
-POLISH NOTES — do AFTER all sections are drafted. Do not action mid-draft.
-Delete this whole block before publishing.
-=========================================================================
-
-[ ] §2 (Why Detection) — DoS vs info-disclosure nuance.
-    Current draft frames the threat as all-DoS ("threat landscape of DoS attacks")
-    The confirmed picture is 3 impact classes, and CVE-2013-2600 is INFO DISCLOSURE
-    which a detective control helps with LESS than it helps with DoS
-    Action: add a line acknowledging detection is a stronger fit for the DoS-class CVEs
-    than for the info-disclosure one. This shows you understand a detective control
-    isn't equally good against every threat — a judgment beat a reviewer notices.
-    Keep it to one sentence; don't bloat section2. Cross-check wording against
-    04-remediation/notes.md so the two files agree on this point
--->
+- CVE records — see [`miniupnpd_exposure.md`](../02-findings/miniupnpd_exposure.md) for the full list of confirmed CVEs with authoritative references
