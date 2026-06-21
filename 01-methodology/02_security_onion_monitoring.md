@@ -146,7 +146,7 @@ Most future work for this repo will consist of addressing the limitations listed
 
 **Evidence (this repository):**
 
-- [`rule_9000001_validation.md`](rule_9000001_validation.md) — offline rule-logic validation; full `eve.json` output and field-by-field clause breakdown
+- [`rule_9000001_validation.md`](rule_9000001_validation.md](https://github.com/not-tlynch/home-network-security-assessment/blob/main/02-findings/miniupnpd_exposure.md)) — offline rule-logic validation; full `eve.json` output and field-by-field clause breakdown
 - [`03-evidence/suricata_rule.txt`](03-evidence/suricata_rule.txt) — the deployed rule (`sid:9000001`, rev:2)
 - [`03-evidence/hunt_query.txt`](03-evidence/hunt_query.txt) — Security Onion Hunt query used during the monitoring period
 - Related: [`02-findings/miniupnpd_exposure.md`](02-findings/miniupnpd_exposure.md) — the WAN-exposure finding this monitoring supports
