@@ -4,7 +4,7 @@ Authorized home network assessment — found an internet-facing, outdated UPnP d
 
 ## Overview
 
-This repository contains a detailed account of the steps and procedures used to find multiple vulnerabilities and secure a home network. Upon verbal authorization from the network owner, I began reconnaissance on the local subnet. A scan flagged multiple CVEs against an outdated UPnP daemon (MiniUPnPd 1.8) running on a port accessible from the public internet. I validated each CVE against its authoritative record, which caught one false positive the scanner mis-attributed, and confirmed the prior finding — A internet-exposed, outdated daemon vulnerable to several remote denial-of-service conditions. Security Onion and Suricata with custom rules were deployed in response to monitor network traffic. An analysis of logs detected no unauthorized or malicious activity.
+This repository contains a detailed account of the steps and procedures used to find multiple vulnerabilities and secure a home network. Upon verbal authorization from the network owner, I began reconnaissance on the local subnet. A scan flagged multiple CVEs against an outdated UPnP daemon (MiniUPnPd 1.8) running on a port accessible from the public internet. I validated each CVE against its authoritative record, which caught one false positive the scanner mis-attributed, and confirmed the finding — A internet-exposed, outdated daemon vulnerable to several remote denial-of-service conditions. Security Onion and Suricata with custom rules were deployed in response to monitor network traffic. An analysis of logs detected no unauthorized or malicious activity.
 
 ## Authorization and Rules of Engagement
 
