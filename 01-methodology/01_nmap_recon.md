@@ -15,7 +15,7 @@ The scan identified the router at 192.168.68.1 with four open TCP ports:
 * 80/tcp — http (OpenWrt uHTTPd)
 * 443/tcp — ssl/https
 * 1900/tcp — upnp (MiniUPnP 1.8 — TP-LINK router, UPnP 1.1)
-**Note:** TCP on port 1900 is normal. Every confirmed CVE lives in the SOAP, or control path, which is reached over TCP.
+* **Note:** TCP on port 1900 is normal. Every confirmed CVE lives in the SOAP, or control path, which is reached over TCP.
 Port 1900 is the relevant finding: an outdated MiniUPnPd 1.8 daemon, a version dating to 2014. Nmap labels the service "MiniUPnP"; this is the daemon, miniupnpd. The service version string is the pivot the whole assessment turns on — it's what the Phase 2 vulnerability scan matches CVEs against.
 
 ## Phase 2 - Vulnerability Scan
