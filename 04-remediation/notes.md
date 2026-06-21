@@ -6,17 +6,14 @@ The problem resides in an outdated UPnP daemon (MiniUPnPd 1.8) that was reachabl
 ## Preventive Controls — The Ideal Fix
 The first and most effective step would be reconfiguring the router so port 1900 is restricted to the LAN (local area network) only — UPnP is designed for internal use and should never be reachable from the public internet.
 
-When prevention is not possible, the next best resolution is detection. The
-detective control deployed here was Security Onion running a custom Suricata
-rule (sid:9000001) that alerts on external probes to port 1900. Detection
-design is documented in 01-methodology/02_security_onion_monitoring.md.
 
 The second step is patching the daemon itself. Per the CVE-2026-5720 advisory, any version of MiniUPnPd below 2.3.10 is affected, so the daemon would need to be brought up to 2.3.10 or later. On this device that is not a standalone update: MiniUPnPd is bundled into the router's firmware, so patching depends on TP-Link releasing updated firmware for the Deco S4R that ships a fixed daemon version. Until such a release is installed, the vulnerable daemon remains in place.
+
 
 As an additional layer, a firewall rule dropping inbound WAN traffic to port 1900 would block external reachability even if the daemon itself stays unpatched — defense in depth rather than relying on a single control.
 
 ## Why Preventive Wasn't Deployable
-Preventive methods were not available due to lack of ownership over the router, as well as lost admin credentials. This inhibits the preventive control of taking port 1900 of WAN. When prevention is not possible the next best resolution is detection.
+Preventive methods were not available due to lack of ownership over the router, as well as lost admin credentials. This inhibits the preventive control of taking port 1900 off WAN. When prevention is not possible the next best resolution is detection. The detective control deployed here was Security Onion running a custom Suricata rule (sid:9000001) that alerts on external probes to port 1900. Detection design is documented in 01-methodology/02_security_onion_monitoring.md.
 
 
 ## Why Detection Fits the Threat
@@ -28,4 +25,4 @@ Detection fits the information-disclosure finding less cleanly. With a memory-le
 
 ## Residual Risk
 
-Detective controls only act as a band-aid and do not solve the underlying exposure. The daemon is still WAN-facing and vulnerable. The monitoring sensor also cannot see WAN-side unicast severly blunting efficacy.
+Detective controls only act as a band-aid and do not solve the underlying exposure. The daemon is still WAN-facing and vulnerable. The monitoring sensor also cannot see WAN-side unicast, severely blunting efficacy.
