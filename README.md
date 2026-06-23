@@ -35,7 +35,7 @@ The confirmed findings fall into three impact classes: remote denial-of-service 
 
 All scanner-flagged CVEs were validated against their authoritative records. The one that did not survive validation — CVE-2017-8798 (scanner-rated 9.8 Critical) — affects the MiniUPnPc client library, not the MiniUPnPd daemon, and is documented as a false positive in the findings detail.
 
-## Findings Note
+## Findings Note — False Positive
 
 The scanner's highest-severity hit was CVE-2017-8798 (reported as 9.8 Critical). On validation against the authoritative record, this CVE affects the MiniUPnP **client** library (miniupnpc), not the **daemon** (miniupnpd) running on the router — and its public exploit (EDB-ID:43501) is a client-side denial of service, not router code execution. The scanner cross-matched it onto the daemon via overlapping CPE data. It is documented here as a false positive rather than a finding. Validating flagged CVEs against their source records, rather than trusting scanner output, is what separated the genuine findings from the cross-matched one.
 
