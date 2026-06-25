@@ -41,7 +41,7 @@ CVE-2026-5720 is the one finding whose severity isn't settled yet. Its NVD recor
 
 ## Repository Structure
 
-\`\`\`
+```
 home-network-security-assessment/
 ├── README.md
 ├── 01-methodology/
@@ -57,4 +57,4 @@ home-network-security-assessment/
 │   └── suricata_rule.txt
 └── 04-remediation/
     └── notes.md
-\`\`\`
+```
